@@ -20,7 +20,9 @@
     "url": "https://github.com/valeriiBorisenko/movies-explorer-api/issues"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.12.13",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "eslint": "^7.28.0",
