@@ -2,8 +2,8 @@ const express = require('express');
 
 const moviesRoutes = express.Router();
 
-moviesRoutes.get('/movies', '');
-moviesRoutes.post('/movies', express.json(), '');
-moviesRoutes.delete('/movies/:_id', '');
+moviesRoutes.get('/', '');
+moviesRoutes.post('/', express.json(), '');
+moviesRoutes.delete('/:_id', '');
 
 exports.moviesRoutes = moviesRoutes;
