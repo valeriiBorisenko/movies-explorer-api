@@ -5,6 +5,7 @@ const auth = require('../middlewares/auth');
 const { createUser, login } = require('../controllers/users');
 const { usersRoutes } = require('./users');
 const { moviesRoutes } = require('./movies');
+const errorMessage = require('../utils.js/constants');
 
 const routes = express.Router();
 
@@ -17,7 +18,7 @@ routes.use('/users', usersRoutes);
 routes.use('/movies', moviesRoutes);
 
 routes.get('*', (req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+  next(new NotFoundError(errorMessage.notFoundUrl));
 });
 
 exports.routes = routes;

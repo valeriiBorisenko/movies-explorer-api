@@ -5,6 +5,7 @@ const NotFoundError = require('../errors/not-found-err');
 const ValidationError = require('../errors/not-found-err');
 const MongoError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/not-found-err');
+const errorMessage = require('../utils.js/constants');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -21,9 +22,9 @@ exports.createUser = async (req, res, next) => {
     res.status(200).send({ ...user._doc, password: undefined, __v: undefined });
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new ValidationError('Переданы некорректные данные при создании пользователя'));
+      next(new ValidationError(errorMessage.validationCreateUser));
     } else if (err.name === 'MongoError' && err.code === 11000) {
-      next(new MongoError('Пользователь с переданным email уже существует'));
+      next(new MongoError(errorMessage.mongoCreateUser));
     } else {
       next(err);
     }
@@ -41,11 +42,11 @@ exports.login = async (req, res, next) => {
         token, password: undefined, __v: undefined,
       });
     } else {
-      throw new BadRequestError('Не правильный email или пароль');
+      throw new BadRequestError(errorMessage.badRequestLoginUser);
     }
   } catch (err) {
     if (err.message === 'BadRequest') {
-      next(new BadRequestError('Неправильные email или пароль'));
+      next(new BadRequestError(errorMessage.badRequestLoginUser));
     } else {
       next(err);
     }
@@ -60,7 +61,7 @@ exports.getUser = async (req, res, next) => {
     if (ownerId) {
       res.status(200).send(...owner);
     } else {
-      throw new NotFoundError('Пользователь с указанным _id не найден');
+      throw new NotFoundError(errorMessage.notFoundUser);
     }
   } catch (err) {
     next(err);
@@ -75,9 +76,9 @@ exports.updateUser = async (req, res, next) => {
     res.status(200).send(user);
   } catch (err) {
     if (err.name === 'ValidationError') {
-      next(new ValidationError('Переданы некорректные данные при обновлении профиля'));
+      next(new ValidationError(errorMessage.validationUpdateUser));
     } else if (err.message === 'CastError') {
-      next(new NotFoundError('Пользователь с указанным _id не найден'));
+      next(new NotFoundError(errorMessage.notFoundUser));
     } else {
       next(err);
     }
