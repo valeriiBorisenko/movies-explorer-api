@@ -12,6 +12,8 @@ const errorMessage = {
 
   notFoundUrl: 'Запрашиваемый ресурс не найден',
   serverError: 'На сервере произошла ошибка',
+  linkFails: 'Ссылка не подходит',
+  badRequestAuthorization: 'Необходима авторизация',
 };
 
 module.exports = errorMessage;

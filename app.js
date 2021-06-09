@@ -8,11 +8,12 @@ const { routes } = require('./routes');
 const limiter = require('./middlewares/rateLimit');
 const err = require('./middlewares/err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { MONGO_URL } = require('./config');
 
-const { PORT = 3005, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
+const { PORT = 3005 } = process.env;
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
