@@ -46,7 +46,6 @@ exports.createMovie = async (req, res, next) => {
         owner,
       }),
     );
-    await Movie.populate('owner');
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError('Переданы некорректные данные при создании фильма'));
@@ -62,13 +61,13 @@ exports.deleteMovie = async (req, res, next) => {
     if (movie.owner === req.user._id) {
       res.send(await movie.delete());
     } else {
-      throw new NotValidIdError('Нет прав к удалению карточки');
+      throw new NotValidIdError('Нет прав к удалению фильма');
     }
   } catch (err) {
     if (err.name === 'CastError') {
-      next(new ValidationError('Переданы некорректные данные для удаления карточки'));
+      next(new ValidationError('Переданы некорректные данные для удаления фильма'));
     } else if (err.message === 'NotFoundError') {
-      next(new NotFoundError('Карточка с указанным _id не найдена'));
+      next(new NotFoundError('Фильм с указанным _id не найден'));
     } else {
       next(err);
     }
