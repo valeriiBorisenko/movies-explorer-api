@@ -4,7 +4,7 @@ const errorMessage = require('../utils.js/constants');
 
 exports.joiAuth = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
   }),
@@ -20,7 +20,7 @@ exports.joiLogin = celebrate({
 exports.joiUserDataUpdate = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().required().email(),
+    email: Joi.string().email().required(),
   }),
 });
 
