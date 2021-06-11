@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { errorMessage, regularExpressions } = require('../utils.js/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -26,9 +27,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(url) {
-        return /(http||https):\/\/(www\.)?[\w\S]*#?\./.test(url);
+        return regularExpressions.test(url);
       },
-      message: 'Ссылка не подходит',
+      message: errorMessage.linkFails,
     },
   },
   trailer: {
@@ -36,9 +37,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(url) {
-        return /(http||https):\/\/(www\.)?[\w\S]*#?\./.test(url);
+        return regularExpressions.test(url);
       },
-      message: 'Ссылка не подходит',
+      message: errorMessage.linkFails,
     },
   },
   thumbnail: {
@@ -46,9 +47,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(url) {
-        return /(http||https):\/\/(www\.)?[\w\S]*#?\./.test(url);
+        return regularExpressions.test(url);
       },
-      message: 'Ссылка не подходит',
+      message: errorMessage.linkFails,
     },
   },
   owner: {

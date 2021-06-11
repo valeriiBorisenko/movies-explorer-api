@@ -14,6 +14,12 @@ const errorMessage = {
   serverError: 'На сервере произошла ошибка',
   linkFails: 'Ссылка не подходит',
   badRequestAuthorization: 'Необходима авторизация',
+
+  requiredEmail: 'Необходимо указать почту',
+  notValidEmail: 'Неправильно указана почта',
+  requiredPassword: 'Необходимо указать пароль',
 };
 
-module.exports = errorMessage;
+const regularExpressions = /(http||https):\/\/(www\.)?[\w\S]*#?\./;
+
+module.exports = { errorMessage, regularExpressions };

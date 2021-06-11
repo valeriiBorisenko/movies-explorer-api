@@ -1,6 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
-const errorMessage = require('../utils.js/constants');
+const { errorMessage } = require('../utils.js/constants');
 
 exports.joiAuth = celebrate({
   body: Joi.object().keys({

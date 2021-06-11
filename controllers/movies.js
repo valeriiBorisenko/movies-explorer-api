@@ -1,8 +1,8 @@
 const Movie = require('../models/movie');
 const ValidationError = require('../errors/not-found-err');
-const NotValidIdError = require('../errors/not-validId-err');
+const ForbiddenError = require('../errors/forbidden-err');
 const NotFoundError = require('../errors/not-found-err');
-const errorMessage = require('../utils.js/constants');
+const { errorMessage } = require('../utils.js/constants');
 
 exports.getMovie = async (req, res, next) => {
   try {
@@ -62,7 +62,7 @@ exports.deleteMovie = async (req, res, next) => {
     if (movie.owner === req.user._id) {
       res.send(await movie.remove());
     } else {
-      throw new NotValidIdError(errorMessage.notValidIdDeleteMovie);
+      throw new ForbiddenError(errorMessage.notValidIdDeleteMovie);
     }
   } catch (err) {
     if (err.name === 'CastError') {

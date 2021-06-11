@@ -5,7 +5,7 @@ const NotFoundError = require('../errors/not-found-err');
 const ValidationError = require('../errors/not-found-err');
 const MongoError = require('../errors/not-found-err');
 const BadRequestError = require('../errors/not-found-err');
-const errorMessage = require('../utils.js/constants');
+const { errorMessage } = require('../utils.js/constants');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 

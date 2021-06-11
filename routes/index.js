@@ -5,7 +5,7 @@ const auth = require('../middlewares/auth');
 const { createUser, login } = require('../controllers/users');
 const { usersRoutes } = require('./users');
 const { moviesRoutes } = require('./movies');
-const errorMessage = require('../utils.js/constants');
+const { errorMessage } = require('../utils.js/constants');
 const { joiAuth, joiLogin } = require('../middlewares/joi');
 
 const routes = express.Router();
