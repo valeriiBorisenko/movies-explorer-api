@@ -18,7 +18,7 @@ routes.use(auth);
 routes.use('/users', usersRoutes);
 routes.use('/movies', moviesRoutes);
 
-routes.get('*', (req, res, next) => {
+routes.all('*', (req, res, next) => {
   next(new NotFoundError(errorMessage.linkFails));
 });
 
